@@ -1,0 +1,36 @@
+<table>
+    <tbody>
+        {% if enable_head %}
+            <h3>Полка {{ shelf }}</h3>
+            <tr align="left">
+                <td><b>ID</b></td>
+                <td><b>Владелец</b></td>
+                <td><b>Объем</b></td>
+                <td><b>Материалы</b></td>
+            </tr>
+        {% elif not enable_head and not step %}
+            <tr align="left">
+                <td><b>ID</b></td>
+                <td><b>Владелец</b></td>
+                <td><b>Объем</b></td>
+                <td><b>Материалы</b></td>
+            </tr>
+        {% endif %}
+        {% for cup in cups.values %}
+            <tr align="left">
+                <td>{{ cup.cup_id }}</td>
+                {% if cup.owner_name %}
+                    <td><a href="{% url 'accounting:users' owner_name=cup.owner_name %}">{{ cup.owner_name }}</a></td>
+                {% else %}
+                    <td>общая</td>
+                {% endif %}
+                <td>{{ cup.cup_volume }}</td>
+                <td>
+                    {% for material in cup.materials %}
+                        {{ material }}{% if not forloop.last %}, {% else %}{% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

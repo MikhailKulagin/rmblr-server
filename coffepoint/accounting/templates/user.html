@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Космонавт {{ owner_name }} принёс на борт следующие чашки</h1>
+
+{% if shelves %}
+    {% for shelf_name, cups in shelves.items %}
+        {% include "_cup_table.html" with shelf=shelf_name cups=cups enable_head=0 step=forloop.counter0 only%}
+    {% endfor %}
+{% else %}
+    <p>Ничего {{ owner_name }} не принес, но должен был</p>
+{% endif %}
+
+{% endblock content %}
