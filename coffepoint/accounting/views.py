@@ -50,7 +50,7 @@ class AccountungView(TemplateView, CupData):
 
     def get_context_data(self):
         shelves = self.get_shelves()
-        self.context = {"shelves": shelves, 'owner_name': None}
+        self.context = {'shelves': shelves, 'owner_name': None}
         return self.context
 
 
@@ -71,7 +71,7 @@ class UserView(DetailView, CupData):
                                  owner_name=self.kwargs['owner_name'])
         self.owner_name = user.username
         shelves = self.get_shelves()
-        self.context = {"shelves": shelves, 'owner_name': user.username}
+        self.context = {'shelves': shelves, 'owner_name': user.username}
 
     def get_context_data(self, **kwargs):
         return self.context
